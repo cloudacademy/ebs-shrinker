@@ -1,6 +1,6 @@
 # EBS-Shrinker
 
-The following scripts are provided to **demonstrate** how to resize an ebs root volume. The end-to-end solution will launch a demo EC2 instance with an initial 50Gb ebs gp2 root volume, and then resize it to 20Gb. 
+The following script is provided to demonstrate how to resize an ebs root volume. The end-to-end solution will launch a demo EC2 instance with an initial 50Gb ebs gp2 root volume, and then resize it to 20Gb. 
 
 **Note**: Please install the [jq utility](https://stedolan.github.io/jq/) before continuing - Steps 2 & 4 below are dependent on it.
 
