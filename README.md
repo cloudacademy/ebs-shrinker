@@ -199,7 +199,7 @@ aws ec2 wait instance-stopped \
 
 # Step 10
 
-Detach both EBS volumes, and then reattach the smalled 20Gb volume and map it to the root device at /dev/sda1.
+Detach both EBS volumes, and then reattach the smaller and newer 20Gb ebs gp2 root volume and map it to the root device at ```/dev/sda1```.
 
 ```
 for vol in `aws ec2 describe-volumes \
@@ -256,4 +256,4 @@ EOF
 
 The demo EC2 instance is now operational again - but this time with a resized and smaller 20Gb gp2 root ebs volume.
 
-:metal:
+:metal::metal::metal:
