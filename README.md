@@ -10,6 +10,7 @@ The following scripts are provided to **demonstrate** how to resize an ebs root 
 
 [![asciicast](https://asciinema.org/a/307319.svg)](https://asciinema.org/a/307319)
 
+## Before Resizing
 Pause at 1:36 (original root volume 50Gb)
 
 ```
@@ -25,6 +26,7 @@ tmpfs           492M     0  492M   0% /sys/fs/cgroup
 tmpfs            99M     0   99M   0% /run/user/1000 
 ```
 
+## After Resizing
 Pause at 3:52 (resized root volume 20Gb)
 
 ```
