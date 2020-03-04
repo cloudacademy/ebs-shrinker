@@ -42,7 +42,9 @@ tmpfs           492M     0  492M   0% /sys/fs/cgroup
 tmpfs            99M     0   99M   0% /run/user/1000     
 ```
 
-# Environment Variables 1
+# Script
+
+## Environment Variables 1
 
 Defaults to configure the deployment of a demo EC2 instance into the Oregon (```REGION```) region. The EC2 instance will be configured with the Ubuntu 18.04 OS (```IMAGE_ID```) installed on a 50Gb (```VOLUME_SIZE_LARGE```) sized root volume - which will then be cloned and downsized to a 20Gb (```VOLUME_SIZE_SMALL```) root volume
 
@@ -55,7 +57,7 @@ VOLUME_SIZE_LARGE=50 #starting size for ebs root volume
 VOLUME_SIZE_SMALL=20 #final size after resizing for ebs root volume
 ```
 
-# Environment Variables 2
+## Environment Variables 2
 
 You need to update the following environment variables which will be used later to establish a demo EC2 instance with an initial root volume of 50Gb. The demo EC2 instance should be deployed into a subnet with a security group that ensures internet connectivity both in and out.  
 
@@ -66,7 +68,7 @@ SUBNET_ID=<subnet id here - where demo ec2 instance is deployed - example: subne
 SECURITY_GROUP_ID=<security group id here - needs to allow inbound ssh connections to the demo ec2 instance - example: >
 ```
 
-# Step 1
+## Step 1
 
 Launch a demo EC2 instance with a 50Gb root volume with Ubuntu 18.04 installed
 
@@ -84,7 +86,7 @@ CREATE_INSTANCE_RESULT=`aws ec2 run-instances \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=CloudAcademy.EBS.Resizer.Demo}]" "ResourceType=volume,Tags=[{Key=Name,Value=EBSLargeVol}]"`
 ```
 
-# Step 2
+## Step 2
 
 Retrieve the demo EC2 instance id just launched.
 
@@ -96,7 +98,7 @@ INSTANCE_ID=`echo $CREATE_INSTANCE_RESULT | jq -r .Instances[0].InstanceId`
 echo INSTANCE_ID=$INSTANCE_ID
 ```
 
-# Step 3
+## Step 3
 
 Query and display all volumes currently attached to the demo EC2 instance. At the moment there should be just the one 50Gb GP2 root volume attached.
 
@@ -106,7 +108,7 @@ aws ec2 describe-volumes \
     --filters Name=attachment.instance-id,Values=$INSTANCE_ID
 ```
 
-# Step 4
+## Step 4
 
 Create a smaller 20Gb (```VOLUME_SIZE_SMALL```) gp2 volume in the same availabilty zone. Capture the volume id and echo it back out to the console.
 
@@ -126,7 +128,7 @@ NEW_VOL_ID=`echo $CREATE_VOL_RESULT | jq -r .VolumeId`
 echo NEW_VOL_ID=$NEW_VOL_ID
 ```
 
-# Step 5
+## Step 5
 
 Stop the demo EC2 instance in preparation for attaching the new smaller volume.
 
@@ -140,7 +142,7 @@ aws ec2 wait instance-stopped \
     --instance-ids $INSTANCE_ID
 ```
 
-# Step 6
+## Step 6
 
 Attach the new smaller 20Gb volume to the EC2 demo instance and then restart it. The new volume will be attached to the ```/dev/xvdf``` device. 
 
@@ -160,7 +162,7 @@ aws ec2 wait instance-running \
     --instance-ids $INSTANCE_ID
 ```
 
-# Step 7
+## Step 7
 
 Retrieve the auto assigned public IP address and then SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df -h``` to examine and display the attached devices.
 
@@ -199,7 +201,7 @@ tmpfs           492M     0  492M   0% /sys/fs/cgroup
 tmpfs            99M     0   99M   0% /run/user/1000 
 ```
 
-# Step 8
+## Step 8
 
 :muscle::muscle::muscle:
 
@@ -241,7 +243,7 @@ echo shrink root vol finished!!
 EOF
 ```
 
-# Step 9
+## Step 9
 
 Shutdown the demo EC2 instance in preparation for detaching the EBS volumes.
 
@@ -255,7 +257,7 @@ aws ec2 wait instance-stopped \
     --instance-ids $INSTANCE_ID
 ```
 
-# Step 10
+## Step 10
 
 Detach both EBS volumes, and then reattach the smaller and newer 20Gb ebs gp2 root volume and map it to the root device at ```/dev/sda1```.
 
@@ -274,7 +276,7 @@ aws ec2 attach-volume \
     --device /dev/sda1
 ```
 
-# Step 11
+## Step 11
 
 Restart the demo EC2 instance and query and display the updated auto assigned public IP address 
 
@@ -298,7 +300,7 @@ PUBLIC_IP=`aws ec2 describe-instances \
 echo PUBLIC_IP=$PUBLIC_IP
 ```
 
-# Step 12
+## Step 12
 
  SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df -h``` to examine and display the attached config of the root device. Compare with the previous values (see previous Step 7). 
 
@@ -329,6 +331,6 @@ tmpfs            99M     0   99M   0% /run/user/1000
 
 # Result!
 
-The demo EC2 instance is now operational again - but this time with a resized and smaller 20Gb gp2 root ebs volume.
+The demo EC2 instance is now operational again - this time with a resized and smaller 20Gb gp2 root ebs volume.
 
 :metal::metal::metal:
