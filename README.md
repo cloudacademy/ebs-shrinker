@@ -186,8 +186,6 @@ EOF
 
 Output will be something like:
 
-**Note**: The root volume is 50Gb
-
 ```
 Filesystem      Size  Used Avail Use% Mounted on                                                                               
 udev            481M     0  481M   0% /dev                                                                                     
@@ -200,6 +198,8 @@ tmpfs           492M     0  492M   0% /sys/fs/cgroup
 /dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
 tmpfs            99M     0   99M   0% /run/user/1000 
 ```
+
+**Note**: The root volume is 50Gb
 
 ## Step 8
 
@@ -314,8 +314,6 @@ EOF
 
 Output will be something like:
 
-**Note**: The root volume is now 20Gb
-
 ```
 Filesystem      Size  Used Avail Use% Mounted on                                                                               
 udev            481M     0  481M   0% /dev                                                                                     
@@ -328,6 +326,8 @@ tmpfs           492M     0  492M   0% /sys/fs/cgroup
 /dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
 tmpfs            99M     0   99M   0% /run/user/1000     
 ```
+
+**Note**: The root volume is now 20Gb
 
 # Result!
 
