@@ -45,12 +45,14 @@ CREATE_INSTANCE_RESULT=`aws ec2 run-instances \
     --subnet-id $SUBNET_ID \
     --associate-public-ip-address \
     --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": $VOLUME_SIZE_LARGE, \"VolumeType\": \"gp2\" } } ]" \
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EBSShrink}]" "ResourceType=volume,Tags=[{Key=Name,Value=EBSLargeVol}]"`
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=CloudAcademy.EBS.Resizer.Demo}]" "ResourceType=volume,Tags=[{Key=Name,Value=EBSLargeVol}]"`
 ```
 
 # Step 2
 
 Retrieve the demo EC2 instance id just launched.
+
+**Note**: Please install the [jq utility](https://stedolan.github.io/jq/) before continuing - this step is dependent on it.
 
 ```
 INSTANCE_ID=`echo $CREATE_INSTANCE_RESULT | jq -r .Instances[0].InstanceId`
@@ -71,6 +73,9 @@ aws ec2 describe-volumes \
 # Step 4
 
 Create a smaller 20Gb (```VOLUME_SIZE_SMALL```) gp2 volume in the same availabilty zone. Capture the volume id and echo it back out to the console.
+
+**Note**: Please install the [jq utility](https://stedolan.github.io/jq/) before continuing - this step is dependent on it.
+
 
 ```
 CREATE_VOL_RESULT=`aws ec2 create-volume \
