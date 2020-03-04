@@ -6,9 +6,39 @@ The following scripts are provided to **demonstrate** how to resize an ebs root 
 
 **Note**: This script is provided to demonstrate how to perform root volume resizing - take extreme care when performing the same actions within a production environment. For extra safety measures - always snapshot any ebs volume BEFORE performing any resizing actions on it.
 
-Example:
+# Example:
 
 [![asciicast](https://asciinema.org/a/307319.svg)](https://asciinema.org/a/307319)
+
+Pause at 1:36 (original root volume 50Gb)
+
+```
+Filesystem      Size  Used Avail Use% Mounted on                                                                               
+udev            481M     0  481M   0% /dev                                                                                     
+tmpfs            99M  748K   98M   1% /run                                                                                     
+/dev/xvda1       49G  1.1G   48G   3% /                                                                                        
+tmpfs           492M     0  492M   0% /dev/shm                                                                                 
+tmpfs           5.0M     0  5.0M   0% /run/lock                                                                                
+tmpfs           492M     0  492M   0% /sys/fs/cgroup                                                                           
+/dev/loop0       18M   18M     0 100% /snap/amazon-ssm-agent/1480                                                              
+/dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
+tmpfs            99M     0   99M   0% /run/user/1000 
+```
+
+Pause at 3:52 (resized root volume 20Gb)
+
+```
+Filesystem      Size  Used Avail Use% Mounted on                                                                               
+udev            481M     0  481M   0% /dev                                                                                     
+tmpfs            99M  740K   98M   1% /run                                                                                     
+/dev/xvda        20G  1.3G   18G   7% /                                                                                        
+tmpfs           492M     0  492M   0% /dev/shm                                                                                 
+tmpfs           5.0M     0  5.0M   0% /run/lock                                                                                
+tmpfs           492M     0  492M   0% /sys/fs/cgroup                                                                           
+/dev/loop0       18M   18M     0 100% /snap/amazon-ssm-agent/1480                                                              
+/dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
+tmpfs            99M     0   99M   0% /run/user/1000     
+```
 
 # Environment Variables 1
 
