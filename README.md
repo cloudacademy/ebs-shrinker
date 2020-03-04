@@ -1,5 +1,9 @@
 # ebs-shrinker
 
+# Environment Variables 1
+
+Defaults to configure the deployment of a demo EC2 instance into ```us-west-2```  region. The EC2 instance will be configured with the Ubuntu 18.04 OS installed on a 50Gb (```VOLUME_SIZE_LARGE```) sized root volume - which will then be cloned and downsized to a 20Gb (```VOLUME_SIZE_SMALL```) root volume
+
 ```
 REGION=us-west-2
 AZ=us-west-2c
@@ -8,6 +12,8 @@ USER=ubuntu
 VOLUME_SIZE_LARGE=50 #starting size for ebs root volume
 VOLUME_SIZE_SMALL=20 #final size after resizing for ebs root volume
 ```
+
+# Environment Variables 2
 
 You need to update the following environment variables which will be used later to establish a demo EC2 instance with an initial root volume of 50Gb 
 
