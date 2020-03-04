@@ -150,11 +150,11 @@ This is where the heavy lifting (resizing) happens!!
 The resizing process involves the following sub steps:
 
 * Format the new ```/dev/xvdf``` volume using ```mkfs -t ext4```
-* Create a new directory ```/mnt/new-root-volume``` as the mount point for ```/dev/xvdf``` device
-* Rsync all files/folders recursively from root to the ```/mnt/new-root-volume``` directory
+* Create a new directory ```/mnt/new-root-volume``` as the mount point for the ```/dev/xvdf``` device
+* Rsync all root volume files/folders recursively to the ```/mnt/new-root-volume``` directory
 * Install grub (boot loader) on the new ```/mnt/new-root-volume``` directory
 * Unmount the new ```/mnt/new-root-volume``` directory
-* Copy across both the UUID and label from the original root volume to the new root volume
+* Copy across both the UUID and Label from the original root volume to the new root volume
 
 ```
 ssh -o "StrictHostKeyChecking no" -v -i $SSH_KEY_PATH $USER@$PUBLIC_IP 'bash -s' <<\EOF
