@@ -147,7 +147,10 @@ This is where the magic happens!!
 
 The resizing process involves the following sub steps:
 
-
+* step 1
+* step 2
+* step 3
+* step 4
 
 ```
 ssh -o "StrictHostKeyChecking no" -v -i $SSH_KEY_PATH $USER@$PUBLIC_IP 'bash -s' <<\EOF
