@@ -143,7 +143,9 @@ EOF
 
 # Step 8
 
-**This is where the magic happens!!**
+:muscle::muscle::muscle:
+
+This is where the heavy lifting (resizing) happens!!
 
 The resizing process involves the following sub steps:
 
