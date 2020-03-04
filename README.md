@@ -1,8 +1,12 @@
-# ebs-shrinker
+# EBS-Shrinker
+
+The following scripts are provided to *demonstrate* how to resize a root ebs volume. The script will launch a demo EC2 instance with an initial 50Gb ebs root gp2 volume, and then resize it to 20Gb. 
+
+Note: This script is provided to demonstrate how to perform root volume resizing - take extreme care when performing the same actions within a production environment. For extra saftey measure - always snapshot any ebs volume BEFORE performing any resizing actions on it.
 
 # Environment Variables 1
 
-Defaults to configure the deployment of a demo EC2 instance into the Oregon (```REGION```) region. The EC2 instance will be configured with the Ubuntu 18.04 OS () installed on a 50Gb (```VOLUME_SIZE_LARGE```) sized root volume - which will then be cloned and downsized to a 20Gb (```VOLUME_SIZE_SMALL```) root volume
+Defaults to configure the deployment of a demo EC2 instance into the Oregon (```REGION```) region. The EC2 instance will be configured with the Ubuntu 18.04 OS (```IMAGE_ID```) installed on a 50Gb (```VOLUME_SIZE_LARGE```) sized root volume - which will then be cloned and downsized to a 20Gb (```VOLUME_SIZE_SMALL```) root volume
 
 ```
 REGION=us-west-2
