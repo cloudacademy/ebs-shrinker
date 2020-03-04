@@ -9,6 +9,8 @@ VOLUME_SIZE_LARGE=50 #starting size for ebs root volume
 VOLUME_SIZE_SMALL=20 #final size after resizing for ebs root volume
 ```
 
+You need to update the following environment variables which will be used later to establish a demo EC2 instance with an initial root volume of 50Gb 
+
 ```
 SSH_KEY_NAME=<ec2 ssh keyname here - example: DemoSSHKey>
 SSH_KEY_PATH=<ec2 ssh key path here - example: ~/.ssh/DemoSSHKey.pem>
