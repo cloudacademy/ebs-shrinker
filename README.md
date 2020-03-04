@@ -86,6 +86,10 @@ CREATE_INSTANCE_RESULT=`aws ec2 run-instances \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=CloudAcademy.EBS.Resizer.Demo}]" "ResourceType=volume,Tags=[{Key=Name,Value=EBSLargeVol}]"`
 ```
 
+Outcome:
+
+![step 1](/doc/step1.png)
+
 ## Step 2
 
 Retrieve the demo EC2 instance id just launched.
@@ -114,7 +118,6 @@ Create a smaller 20Gb (```VOLUME_SIZE_SMALL```) gp2 volume in the same availabil
 
 **Note**: Please install the [jq utility](https://stedolan.github.io/jq/) before continuing - this step is dependent on it.
 
-
 ```
 CREATE_VOL_RESULT=`aws ec2 create-volume \
     --region $REGION \
@@ -127,6 +130,10 @@ NEW_VOL_ID=`echo $CREATE_VOL_RESULT | jq -r .VolumeId`
 
 echo NEW_VOL_ID=$NEW_VOL_ID
 ```
+
+Outcome:
+
+![step 4](/doc/step4.png)
 
 ## Step 5
 
@@ -141,6 +148,10 @@ aws ec2 wait instance-stopped \
     --region $REGION \
     --instance-ids $INSTANCE_ID
 ```
+
+Outcome:
+
+![step 5](/doc/step5.png)
 
 ## Step 6
 
@@ -161,6 +172,10 @@ aws ec2 wait instance-running \
     --region $REGION \
     --instance-ids $INSTANCE_ID
 ```
+
+Outcome:
+
+![step 6](/doc/step6.png)
 
 ## Step 7
 
@@ -243,6 +258,10 @@ echo shrink root vol finished!!
 EOF
 ```
 
+Outcome:
+
+![step 8](/doc/step8.png)
+
 ## Step 9
 
 Shutdown the demo EC2 instance in preparation for detaching the EBS volumes.
@@ -256,6 +275,10 @@ aws ec2 wait instance-stopped \
     --region $REGION \
     --instance-ids $INSTANCE_ID
 ```
+
+Outcome:
+
+![step 9](/doc/step9.png)
 
 ## Step 10
 
@@ -275,6 +298,10 @@ aws ec2 attach-volume \
     --instance-id $INSTANCE_ID \
     --device /dev/sda1
 ```
+
+Outcome:
+
+![step 10](/doc/step10.png)
 
 ## Step 11
 
@@ -299,6 +326,10 @@ PUBLIC_IP=`aws ec2 describe-instances \
 
 echo PUBLIC_IP=$PUBLIC_IP
 ```
+
+Outcome:
+
+![step 11](/doc/step11.png)
 
 ## Step 12
 
