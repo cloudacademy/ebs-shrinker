@@ -2,7 +2,9 @@
 
 The following scripts are provided to *demonstrate* how to resize a root ebs volume. The script will launch a demo EC2 instance with an initial 50Gb ebs root gp2 volume, and then resize it to 20Gb. 
 
-Note: This script is provided to demonstrate how to perform root volume resizing - take extreme care when performing the same actions within a production environment. For extra saftey measure - always snapshot any ebs volume BEFORE performing any resizing actions on it.
+Note: Please install the [jq utility](https://stedolan.github.io/jq/) before continuing - Steps 2 & 4 are dependent on it.
+
+Note: This script is provided to demonstrate how to perform root volume resizing - take extreme care when performing the same actions within a production environment. For extra safety measures - always snapshot any ebs volume BEFORE performing any resizing actions on it.
 
 # Environment Variables 1
 
@@ -142,6 +144,10 @@ EOF
 # Step 8
 
 This is where the magic happens!!
+
+The resizing process involves the following sub steps:
+
+
 
 ```
 ssh -o "StrictHostKeyChecking no" -v -i $SSH_KEY_PATH $USER@$PUBLIC_IP 'bash -s' <<\EOF
