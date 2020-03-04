@@ -180,6 +180,23 @@ df -h
 EOF
 ```
 
+Output will be something like:
+
+**Note**: The root volume is 50Gb
+
+```
+Filesystem      Size  Used Avail Use% Mounted on                                                                               
+udev            481M     0  481M   0% /dev                                                                                     
+tmpfs            99M  748K   98M   1% /run                                                                                     
+/dev/xvda1       49G  1.1G   48G   3% /                                                                                        
+tmpfs           492M     0  492M   0% /dev/shm                                                                                 
+tmpfs           5.0M     0  5.0M   0% /run/lock                                                                                
+tmpfs           492M     0  492M   0% /sys/fs/cgroup                                                                           
+/dev/loop0       18M   18M     0 100% /snap/amazon-ssm-agent/1480                                                              
+/dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
+tmpfs            99M     0   99M   0% /run/user/1000 
+```
+
 # Step 8
 
 :muscle::muscle::muscle:
@@ -289,6 +306,23 @@ lsblk
 echo
 df -h
 EOF
+```
+
+Output will be something like:
+
+**Note**: The root volume is now 20Gb
+
+```
+Filesystem      Size  Used Avail Use% Mounted on                                                                               
+udev            481M     0  481M   0% /dev                                                                                     
+tmpfs            99M  740K   98M   1% /run                                                                                     
+/dev/xvda        20G  1.3G   18G   7% /                                                                                        
+tmpfs           492M     0  492M   0% /dev/shm                                                                                 
+tmpfs           5.0M     0  5.0M   0% /run/lock                                                                                
+tmpfs           492M     0  492M   0% /sys/fs/cgroup                                                                           
+/dev/loop0       18M   18M     0 100% /snap/amazon-ssm-agent/1480                                                              
+/dev/loop1       90M   90M     0 100% /snap/core/8268                                                                          
+tmpfs            99M     0   99M   0% /run/user/1000     
 ```
 
 # Result!
