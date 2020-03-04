@@ -6,6 +6,10 @@ The following scripts are provided to **demonstrate** how to resize an ebs root 
 
 **Note**: This script is provided to demonstrate how to perform root volume resizing - take extreme care when performing the same actions within a production environment. For extra safety measures - always snapshot any ebs volume BEFORE performing any resizing actions on it.
 
+Example:
+
+[![asciicast](https://asciinema.org/a/307319.svg)](https://asciinema.org/a/307319)
+
 # Environment Variables 1
 
 Defaults to configure the deployment of a demo EC2 instance into the Oregon (```REGION```) region. The EC2 instance will be configured with the Ubuntu 18.04 OS (```IMAGE_ID```) installed on a 50Gb (```VOLUME_SIZE_LARGE```) sized root volume - which will then be cloned and downsized to a 20Gb (```VOLUME_SIZE_SMALL```) root volume
@@ -106,7 +110,7 @@ aws ec2 wait instance-stopped \
 
 # Step 6
 
-Attach the new smaller 20Gb volume to the EC2 demo instance and then restart it. The new volume is attached to the ```/dev/xvdf``` device. 
+Attach the new smaller 20Gb volume to the EC2 demo instance and then restart it. The new volume will be attached to the ```/dev/xvdf``` device. 
 
 ```
 aws ec2 attach-volume \
@@ -126,7 +130,7 @@ aws ec2 wait instance-running \
 
 # Step 7
 
-Retrieve the auto assigned public IP address and then SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df-h``` to examine and display the attached devices.
+Retrieve the auto assigned public IP address and then SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df -h``` to examine and display the attached devices.
 
 ```
 PUBLIC_IP=`aws ec2 describe-instances \
@@ -247,7 +251,7 @@ echo PUBLIC_IP=$PUBLIC_IP
 
 # Step 12
 
- SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df-h``` to examine and display the attached devices. Compare with the previous values (see Step 7). 
+ SSH into the demo EC2 instance and run the commands ```lsblk``` and ```df -h``` to examine and display the attached config of the root device. Compare with the previous values (see previous Step 7). 
 
 ```
 ssh -o "StrictHostKeyChecking no" -v -i $SSH_KEY_PATH $USER@$PUBLIC_IP 'bash -s' <<\EOF
